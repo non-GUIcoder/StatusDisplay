@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<title>Status Display Panel</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+
+<body>
+    <div id="fullScreen">
+        <h1>Status Display Panel</h1>
+        <p>This is a display for a status, which is maintained remotely. </p>
+        <button onclick="initialise()" class="large" style="background-color: blue;">Initialise Display Panel</button>
+        <button onclick="location.href = 'admin.html';" class="large" style="background-color: grey;">Go to Control Panel</button>
+        <p>This is the frontend for the display. For the administrative control panel, go to <a href="admin.html">admin.html</a> instead.</p>
+    </div>
+    <div id="infoPanel">
+        <h1>Status:</h1>
+        <h2 id="statusDisplay">empty</h2>
+    </div>
+</body>
+<script src="noSleep.js"></script>
+<script>
+    // handles telemetry and displays the status
+    var status = "noConnection";
+
+    timerID = setInterval(getStatus, 3000);
+
+    function initialise() {
+        // Keeps the device awake
+        var noSleep = new NoSleep();
+        noSleep.enable();
+
+        // Fullscreen the webpage
+        var elem = document.getElementById("infoPanel");
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+
+
+    }
+
+    function getStatus() {
+
+        console.log("executed");
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                status = this.responseText;
+                setStatus();
+            }
+        };
+
+        xhttp.open("GET", "status.txt", true);
+        xhttp.send();
+
+    }
+
+    function setStatus() {
+        // There are a number of pre-set statuses, which the style should react to:
+        // idle, busy, occupied, noConnection;
+        // which corresponds to the following messages:
+        // come in without knocking, come in after knocking, do not knock, check network.
+        document.getElementById("statusDisplay").innerHTML = status;
+        document.getElementById("infoPanel").className = status;
+    }
+</script>
+
+</html>
