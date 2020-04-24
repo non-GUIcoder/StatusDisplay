@@ -18,7 +18,7 @@ button.large {
 }
 
 div.idle {
-    background: white;
+    background: black;
     width: 300px;
     border: 15px solid green;
     padding: 50px;
@@ -26,7 +26,7 @@ div.idle {
 }
 
 div.busy {
-    background: white;
+    background: black;
     width: 300px;
     border: 15px solid yellow;
     padding: 50px;
@@ -41,10 +41,42 @@ div.occupied {
     margin: 20px;
 }
 
-div.noConnection {
-    background: white;
+div.custom {
+    background: black;
     width: 300px;
     border: 15px solid grey;
     padding: 50px;
     margin: 20px;
+}
+
+h1.idle {
+    color: white;
+}
+
+h1.busy {
+    color: white;
+}
+
+h1.occupied {
+    color: black;
+}
+
+h1.custom {
+    color: white;
+}
+
+h2.idle {
+    color: white;
+}
+
+h2.busy {
+    color: white;
+}
+
+h2.occupied {
+    color: black;
+}
+
+h2.custom {
+    color: white;
 }
