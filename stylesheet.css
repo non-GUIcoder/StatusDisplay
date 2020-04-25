@@ -1,5 +1,6 @@
 html {
     margin: 10px;
+    font-family: sans-serif;
 }
 
 body {
@@ -9,18 +10,30 @@ body {
 h1 {
     color: black;
     margin: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    color: black;
+    margin: auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 button.large {
     border: thick solid lightgray;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 8px;
     outline: none;
+    margin: 5px;
+    transition: 100ms;
+    transition-timing-function: ease;
 }
 
 button.large:hover {
@@ -32,32 +45,28 @@ button.large:active {
     transform: translateY(5px);
 }
 
-div.idle {
+div#infoPanel {
     background: black;
-    width: 300px;
-    border: 15px solid green;
+    width: inherit;
+    max-width: 300px;
     padding: 50px;
+}
+
+div.idle {
+    border: 15px solid green;
 }
 
 div.busy {
-    background: black;
-    width: 300px;
     border: 15px solid yellow;
-    padding: 50px;
 }
 
 div.occupied {
-    background: yellow;
-    width: 300px;
+    background: yellow !important;
     border: 15px solid red;
-    padding: 50px;
 }
 
 div.debug {
-    background: black;
-    width: 300px;
-    border: 15px solid grey;
-    padding: 50px;
+    border: grey;
 }
 
 h1.idle {
