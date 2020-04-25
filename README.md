@@ -8,3 +8,5 @@ Preferably use with an Apache 2 server.
 Make set.sh executable (755).
 
 noSleep.js is cloned from https://github.com/richtr/NoSleep.js/ and available for redistribution for a different license under the MIT License.
+
+Favicon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
