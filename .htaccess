@@ -20,3 +20,6 @@
         Header set Expires "Thu, 1 Jan 1970 00:00:00 GMT"
     </IfModule>
 </FilesMatch>
+
+Options +ExecCGI
+AddHandler cgi-script cgi sh
