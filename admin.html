@@ -7,8 +7,44 @@
 </head>
 
 <body>
-    <h1>Status Control Panel</h1>
+    <h1 style="float: left;">Status Control Panel</h1>
+    <button onclick="location.href = 'index.html';" class="large" style="background-color: grey; float: right; ">Go to Display Panel</button>
+    <div style="clear:both;"></div>
+    <h2 style="display:inline;">Current status is: </h2>
+    <h2 style="display:inline;" id="statusDisplay"></h2>
+    <button class="large" style="background-color: grey; float: right;" onclick="getStatus()">Refresh</button>
+    <h2>Set status as:</h2>
+    <button onclick="setStatus('idle')" class="large" style="background-color: green;">Idle</button>
+    <button onclick="setStatus('busy')" class="large" style="background-color: yellow; color: black;">Busy</button>
+    <button onclick="setStatus('occupied')" class="large" style="background-color: red;">Occupied</button>
 </body>
+
+<script>
+    let httpSendStatus = new XMLHttpRequest();
+    let httpGetStatus = new XMLHttpRequest();
+
+    // Gets status upon page load
+    getStatus();
+
+    // Sends updated status to the server
+    function setStatus(status) {
+        document.getElementById("statusDisplay").innerHTML = status;
+        httpSendStatus.open("GET", "set.sh?" + status);
+        httpSendStatus.send();
+    }
+
+    function getStatus() {
+        httpGetStatus.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                status = this.responseText.trim();
+                document.getElementById("statusDisplay").innerHTML = status;
+            }
+        };
+        httpGetStatus.open("GET", "status.txt", true);
+        httpGetStatus.send();
+    }
+</script>
+
 
 
 </html>

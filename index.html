@@ -8,10 +8,11 @@
 
 <body>
     <div id="fullScreen">
-        <h1>Status Display Panel</h1>
+        <h1 style="float: left;">Status Display Panel</h1>
+        <button onclick="location.href = 'admin.html';" class="large" style="background-color: grey; float: right; ">Go to Control Panel</button>
+        <div style="clear:both;"></div>
         <p>This is a display for a status, which is maintained remotely. </p>
         <button onclick="initialise()" class="large" style="background-color: blue;">Initialise Display Panel</button>
-        <button onclick="location.href = 'admin.html';" class="large" style="background-color: grey;">Go to Control Panel</button>
         <p>This is the frontend for the display. For the administrative control panel, go to <a href="admin.html">admin.html</a> instead.</p>
     </div>
     <div id="infoPanel">
@@ -25,6 +26,9 @@
     var status = "noConnection";
 
     timerID = setInterval(getStatus, 5000);
+
+    // Gets status upon page load
+    getStatus();
 
     function initialise() {
         // Keeps the device awake
@@ -48,19 +52,17 @@
 
     function getStatus() {
 
-        console.log("executed");
+        var httpGetStatus = new XMLHttpRequest();
 
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function() {
+        httpGetStatus.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 status = this.responseText.trim();
                 setStatus();
             }
         };
 
-        xhttp.open("GET", "status.txt", true);
-        xhttp.send();
+        httpGetStatus.open("GET", "status.txt", true);
+        httpGetStatus.send();
 
     }
 

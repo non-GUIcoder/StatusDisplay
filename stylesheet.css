@@ -1,20 +1,35 @@
+html {
+    margin: 10px;
+}
+
 body {
     background-color: white;
-    margin-left: 20px;
 }
 
 h1 {
     color: black;
+    margin: auto;
 }
 
 button.large {
-    border: none;
+    border: thick solid lightgray;
     color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 8px;
+    outline: none;
+}
+
+button.large:hover {
+    box-shadow: 0 5px darkgray;
+}
+
+button.large:active {
+    box-shadow: none;
+    transform: translateY(5px);
 }
 
 div.idle {
@@ -22,7 +37,6 @@ div.idle {
     width: 300px;
     border: 15px solid green;
     padding: 50px;
-    margin: 20px;
 }
 
 div.busy {
@@ -30,7 +44,6 @@ div.busy {
     width: 300px;
     border: 15px solid yellow;
     padding: 50px;
-    margin: 20px;
 }
 
 div.occupied {
@@ -38,7 +51,6 @@ div.occupied {
     width: 300px;
     border: 15px solid red;
     padding: 50px;
-    margin: 20px;
 }
 
 div.debug {
@@ -46,7 +58,6 @@ div.debug {
     width: 300px;
     border: 15px solid grey;
     padding: 50px;
-    margin: 20px;
 }
 
 h1.idle {
