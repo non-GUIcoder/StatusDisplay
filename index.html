@@ -24,7 +24,7 @@
     // handles telemetry and displays the status
     var status = "noConnection";
 
-    timerID = setInterval(getStatus, 3000);
+    timerID = setInterval(getStatus, 5000);
 
     function initialise() {
         // Keeps the device awake
@@ -54,7 +54,7 @@
 
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                status = this.responseText;
+                status = this.responseText.trim();
                 setStatus();
             }
         };
@@ -66,13 +66,27 @@
 
     function setStatus() {
         // There are a number of pre-set statuses, which the style should react to:
-        // idle, busy, occupied, custom;
+        // idle, busy, occupied, debug;
         // which corresponds to the following messages:
         // come in without knocking, come in after knocking, do not knock, debug messages (e.g. check network).
-        document.getElementById("statusDisplay").innerHTML = status;
-        document.getElementById("statusDisplay").className = status;
-        document.getElementById("infoPanel").className = status;
-        document.getElementById("statusDisplayTitle").className = status;
+        switch (status) {
+            case "idle":
+            case "busy":
+            case "occupied":
+            case "debug":
+                document.getElementById("statusDisplay").innerHTML = status;
+                document.getElementById("statusDisplay").className = status;
+                document.getElementById("infoPanel").className = status;
+                document.getElementById("statusDisplayTitle").className = status;
+                break;
+
+            default:
+                document.getElementById("statusDisplay").innerHTML = status;
+                document.getElementById("statusDisplay").className = "debug";
+                document.getElementById("infoPanel").className = "debug";
+                document.getElementById("statusDisplayTitle").className = "debug";
+
+        }
 
     }
 </script>

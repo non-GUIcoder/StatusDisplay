@@ -41,7 +41,7 @@ div.occupied {
     margin: 20px;
 }
 
-div.custom {
+div.debug {
     background: black;
     width: 300px;
     border: 15px solid grey;
@@ -61,7 +61,7 @@ h1.occupied {
     color: black;
 }
 
-h1.custom {
+h1.debug {
     color: white;
 }
 
@@ -77,6 +77,6 @@ h2.occupied {
     color: black;
 }
 
-h2.custom {
+h2.debug {
     color: white;
 }
