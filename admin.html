@@ -21,6 +21,10 @@
     <button onclick="setStatus('idle')" class="large" style="background-color: green;">Idle</button>
     <button onclick="setStatus('busy')" class="large" style="background-color: yellow; color: black;">Busy</button>
     <button onclick="setStatus('occupied')" class="large" style="background-color: red;">Occupied</button>
+    <button onclick="setStatus(document.getElementById('customInput').value)" class="large" style="background-color: gray; padding: unset;">
+        <input type="text" id="customInput" placeholder="Custom" style="width: -webkit-fill-available; width: -moz-available">
+    </button>
+
 </body>
 
 <script>
