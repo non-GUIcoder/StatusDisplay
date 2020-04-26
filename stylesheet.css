@@ -92,7 +92,7 @@ div.occupied {
 }
 
 div.debug {
-    border: grey;
+    border: 15px solid grey;
 }
 
 h1.idle {
