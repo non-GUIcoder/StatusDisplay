@@ -10,20 +10,22 @@
 <body>
     <h1 style="float: left;">Status Control Panel</h1>
     <button onclick="location.href = 'index.html';" class="large" style="background-color: grey; float: right; ">Go to Display Panel</button>
-    <div style="clear:both;"></div>
+    <div style="clear: both;"></div>
 
     <h2 style="float: left;">Current status is:</h2>
     <h2 style="float: left;" id="statusDisplay"></h2>
     <button class="large" style="background-color: grey; float: right;" onclick="getStatus()">Refresh</button>
-    <div style="clear:both;"></div>
+    <div style="clear: both;"></div>
 
     <h2>Set status as: </h2>
-    <button onclick="setStatus('idle')" class="large" style="background-color: green;">Idle</button>
-    <button onclick="setStatus('busy')" class="large" style="background-color: yellow; color: black;">Busy</button>
-    <button onclick="setStatus('occupied')" class="large" style="background-color: red;">Occupied</button>
-    <button onclick="setStatus(document.getElementById('customInput').value)" class="large" style="background-color: gray; padding: unset;">
+    <div class="grid">
+        <button onclick="setStatus('idle')" class="large" style="background-color: green;">Idle</button>
+        <button onclick="setStatus('busy')" class="large" style="background-color: yellow; color: black;">Busy</button>
+        <button onclick="setStatus('occupied')" class="large" style="background-color: red;">Occupied</button>
+        <button onclick="setStatus(document.getElementById('customInput').value)" class="large" style="background-color: gray; padding: unset;">
         <input type="text" id="customInput" placeholder="Custom" style="width: -webkit-fill-available; width: -moz-available">
-    </button>
+        </button>
+    </div>
 
 </body>
 

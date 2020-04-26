@@ -45,6 +45,13 @@ input {
     }
 }
 
+@media screen and (min-width: 600px) {
+    div.grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 button.large {
     border: thick solid lightgray;
     color: white;
