@@ -21,6 +21,15 @@ h2 {
     margin-bottom: 12px;
 }
 
+@media screen and (max-width: 600px) {
+    button.large {
+        width: 100%;
+        float: none !important;
+        margin-left: unset !important;
+        margin-right: unset !important;
+    }
+}
+
 button.large {
     border: thick solid lightgray;
     color: white;
@@ -34,6 +43,7 @@ button.large {
     margin: 5px;
     transition: 100ms;
     transition-timing-function: ease;
+    user-select: none;
 }
 
 button.large:hover {
