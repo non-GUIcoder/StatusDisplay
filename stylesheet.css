@@ -9,14 +9,14 @@ body {
 
 h1 {
     color: black;
-    margin: auto;
+    margin: 5px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
 h2 {
     color: black;
-    margin: auto;
+    margin: 5px;
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -25,6 +25,10 @@ h2 {
     button.large {
         width: 100%;
         float: none !important;
+        margin-left: unset !important;
+        margin-right: unset !important;
+    }
+    div {
         margin-left: unset !important;
         margin-right: unset !important;
     }
@@ -60,6 +64,7 @@ div#infoPanel {
     width: inherit;
     max-width: 300px;
     padding: 50px;
+    margin: 5px;
 }
 
 div.idle {
