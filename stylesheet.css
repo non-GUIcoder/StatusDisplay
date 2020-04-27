@@ -1,5 +1,4 @@
 html {
-    margin: 10px;
     font-family: sans-serif;
 }
 
@@ -21,6 +20,10 @@ h2 {
     margin-bottom: 12px;
 }
 
+p {
+    margin: 5px;
+}
+
 input {
     margin: 5px;
     background-color: lightgray;
@@ -30,6 +33,7 @@ input {
     outline: none;
     padding: 5px;
     font: 15px Arial;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -83,6 +87,7 @@ div#infoPanel {
     max-width: 300px;
     padding: 50px;
     margin: 5px;
+    border-radius: 25px;
 }
 
 div.idle {

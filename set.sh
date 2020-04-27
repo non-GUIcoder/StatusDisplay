@@ -3,7 +3,8 @@
 # disable filename globbing
 set -f
 
-echo "Content-type: text/plain; charset=iso-8859-1"
+echo "Content-type: text/plain; charset=utf-8"
 echo
 
-echo "$QUERY_STRING" > status.txt
+read POST_STRING 
+echo $POST_STRING > status.txt

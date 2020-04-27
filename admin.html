@@ -13,12 +13,12 @@
     <button onclick="location.href = 'index.html';" class="large" style="background-color: grey; float: right; ">Go to Display Panel</button>
     <div style="clear: both;"></div>
 
-    <h2 style="float: left;">Current status is:</h2>
+    <h2 style="float: left;">Current status:</h2>
     <h2 style="float: left;" id="statusDisplay"></h2>
     <button class="large" style="background-color: grey; float: right;" onclick="getStatus()">Refresh</button>
     <div style="clear: both;"></div>
 
-    <h2>Set status as: </h2>
+    <h2>Set status as:</h2>
     <div class="grid">
         <button onclick="setStatus('idle')" class="large" style="background-color: green;">Idle</button>
         <button onclick="setStatus('busy')" class="large" style="background-color: yellow; color: black;">Busy</button>
@@ -27,6 +27,9 @@
         <input type="text" id="customInput" placeholder="Custom" style="width: -webkit-fill-available; width: -moz-available">
         </button>
     </div>
+
+    <h2>Display Response:</h2>
+
 
 </body>
 
@@ -40,8 +43,9 @@
     // Sends updated status to the server
     function setStatus(status) {
         document.getElementById("statusDisplay").innerHTML = status;
-        httpSendStatus.open("GET", "set.sh?" + status);
-        httpSendStatus.send();
+        httpSendStatus.open("POST", "set.sh", true);
+        httpSendStatus.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpSendStatus.send(status);
     }
 
     function getStatus() {
