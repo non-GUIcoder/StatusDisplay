@@ -24,12 +24,12 @@
 <script src="noSleep.js"></script>
 <script>
     // handles telemetry and displays the status
-    var status = "noConnection";
+    let status = {
+        status: "noConnection",
+        seen: true
+    }
 
     timerID = setInterval(getStatus, 5000);
-
-    // Gets status upon page load
-    getStatus();
 
     function initialise() {
         // Keeps the device awake
@@ -48,12 +48,12 @@
 
         httpGetStatus.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                status = this.responseText.trim();
+                status = JSON.parse(this.responseText.trim());
                 setStatus();
             }
         };
 
-        httpGetStatus.open("GET", "status.txt", true);
+        httpGetStatus.open("GET", "status.json", true);
         httpGetStatus.send();
 
     }
@@ -63,24 +63,27 @@
         // idle, busy, occupied, debug;
         // which corresponds to the following messages:
         // come in without knocking, come in after knocking, do not knock, debug messages (e.g. check network).
-        switch (status) {
+        switch (status.status) {
             case "idle":
             case "busy":
             case "occupied":
             case "debug":
-                document.getElementById("statusDisplay").innerHTML = status;
-                document.getElementById("statusDisplay").className = status;
-                document.getElementById("infoPanel").className = status;
-                document.getElementById("statusDisplayTitle").className = status;
+                document.getElementById("statusDisplay").innerHTML = status.status;
+                document.getElementById("statusDisplay").className = status.status;
+                document.getElementById("infoPanel").className = status.status;
+                document.getElementById("statusDisplayTitle").className = status.status;
                 break;
 
             default:
-                document.getElementById("statusDisplay").innerHTML = status;
+                document.getElementById("statusDisplay").innerHTML = status.status;
                 document.getElementById("statusDisplay").className = "debug";
                 document.getElementById("infoPanel").className = "debug";
                 document.getElementById("statusDisplayTitle").className = "debug";
 
         }
+
+        // Gets status upon page load
+        getStatus();
 
     }
 </script>

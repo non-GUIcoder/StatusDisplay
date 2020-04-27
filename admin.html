@@ -36,28 +36,41 @@
 <script>
     let httpSendStatus = new XMLHttpRequest();
     let httpGetStatus = new XMLHttpRequest();
+    let status = {
+        status: "idle",
+        seen: false
+    }
 
-    // Gets status upon page load
-    getStatus();
+    timerID = setInterval(getStatus, 5000);
 
     // Sends updated status to the server
-    function setStatus(status) {
-        document.getElementById("statusDisplay").innerHTML = status;
+    function setStatus(statusStr) {
+        // Update the status display
+        document.getElementById("statusDisplay").innerHTML = statusStr;
+
+        // Update the local status object
+        status.status = statusStr;
+        status.seen = false;
+
+        // Send the status object to the server
         httpSendStatus.open("POST", "set.sh", true);
         httpSendStatus.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpSendStatus.send(status);
+        httpSendStatus.send(JSON.stringify(status));
     }
 
     function getStatus() {
         httpGetStatus.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                status = this.responseText.trim();
-                document.getElementById("statusDisplay").innerHTML = status;
+                status = JSON.parse(this.responseText.trim());
+                document.getElementById("statusDisplay").innerHTML = status.status;
             }
         };
-        httpGetStatus.open("GET", "status.txt", true);
+        httpGetStatus.open("GET", "status.json", true);
         httpGetStatus.send();
     }
+
+    // Gets status upon page load
+    getStatus();
 </script>
 
 
