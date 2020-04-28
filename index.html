@@ -44,12 +44,19 @@
 
     function getStatus() {
 
-        var httpGetStatus = new XMLHttpRequest();
+        let httpGetStatus = new XMLHttpRequest();
 
         httpGetStatus.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                // Load new status
                 status = JSON.parse(this.responseText.trim());
-                setStatus();
+
+                // Set seen flag
+                status.seen = true;
+                sendStatus();
+
+                // Display status
+                updateStatus();
             }
         };
 
@@ -58,7 +65,16 @@
 
     }
 
-    function setStatus() {
+    function sendStatus() {
+
+        let httpSendStatus = new XMLHttpRequest();
+        httpSendStatus.open("POST", "set.sh", true);
+        httpSendStatus.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpSendStatus.send(JSON.stringify(status));
+
+    }
+
+    function updateStatus() {
         // There are a number of pre-set statuses, which the style should react to:
         // idle, busy, occupied, debug;
         // which corresponds to the following messages:

@@ -29,13 +29,11 @@
     </div>
 
     <h2>Display Response:</h2>
-
+    <p id="displayResponse">No response</p>
 
 </body>
 
 <script>
-    let httpSendStatus = new XMLHttpRequest();
-    let httpGetStatus = new XMLHttpRequest();
     let status = {
         status: "idle",
         seen: false
@@ -53,20 +51,28 @@
         status.seen = false;
 
         // Send the status object to the server
+        let httpSendStatus = new XMLHttpRequest();
         httpSendStatus.open("POST", "set.sh", true);
         httpSendStatus.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpSendStatus.send(JSON.stringify(status));
+        updateStatus();
     }
 
     function getStatus() {
+        let httpGetStatus = new XMLHttpRequest();
         httpGetStatus.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 status = JSON.parse(this.responseText.trim());
-                document.getElementById("statusDisplay").innerHTML = status.status;
+                updateStatus();
             }
         };
         httpGetStatus.open("GET", "status.json", true);
         httpGetStatus.send();
+    }
+
+    function updateStatus() {
+        document.getElementById("statusDisplay").innerHTML = status.status;
+        document.getElementById("displayResponse").innerHTML = status.seen ? "Acknowledged" : "Unacknowledged";
     }
 
     // Gets status upon page load
